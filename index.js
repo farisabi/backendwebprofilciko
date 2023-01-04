@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const RouteUser = require('./Routes/User.js');
 const mongoose = require('mongoose');
 const cors = require('cors')
+const path       = require('path');
+
 
 mongoose.set('strictQuery', false);
 
@@ -24,6 +26,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/', RouteUser)
+app.use(bodyParser.urlencoded({extended:false}));
+// app.use(express.static(path.resolve(__dirname, "public")));
 
 
 app.listen(process.env.PORT, (req,res) => {
